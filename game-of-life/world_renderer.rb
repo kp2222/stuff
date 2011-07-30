@@ -10,12 +10,12 @@ class WorldRenderer
     system("clear")
     @world.map.each do |row|
       row.each do |cell|
-          print green "." if cell == 0
-          print  red "*"  if cell == 1
+        print green "." if cell == 0
+        print  red "*"  if cell == 1
+        print "\t"
       end
-      print "\t"
+      print "\n"  
     end
-    print "\n"
   end
   
   private
