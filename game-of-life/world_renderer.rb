@@ -12,7 +12,7 @@ class WorldRenderer
       row.each do |cell|
         print green "." if cell == 0
         print  red "*"  if cell == 1
-        print "\t"
+        print " "
       end
       print "\n"  
     end
