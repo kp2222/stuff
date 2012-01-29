@@ -7,11 +7,11 @@ class World
   end
 
   def row_max
-    @map.count
+    @row_max = @row_max || @map.count
   end
 
   def col_max
-    @map.first.count
+    @col_max = @col_max || @map.first.count
   end
   
 
@@ -36,7 +36,7 @@ class World
   end
 
   def progress
-    @next_map = Marshal.load( Marshal.dump(@map))
+    @next_map = array_clone
     each_cell_with_index do |row,col|
       alive = alive_neighbours(row,col)
       @next_map[row][col] = 0 if alive < 2
@@ -44,6 +44,17 @@ class World
       @next_map[row][col] = 0 if alive > 3
     end
     @map = @next_map
+  end
+
+  private
+
+  # do a deep cloning of the world array
+  def array_clone
+    new_map = @map.inject([]) do |result,rows|
+      result << rows.collect { |e| e}
+    end
+      
+    
   end
   
 end
